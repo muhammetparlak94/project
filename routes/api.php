@@ -32,4 +32,4 @@ Route::group([], function () {
     Route::put('users/{id}', [UserController::class, 'update']);
 });
 
-//die('API çalışıyor');
+

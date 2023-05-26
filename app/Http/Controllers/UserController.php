@@ -32,6 +32,7 @@ class UserController extends Controller
         $user = User::find($id);
 
         if (!$user) {
+            
             return response()->json(['message' => 'Kullanıcı bulunamadı.'], 404);
         }
 
