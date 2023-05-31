@@ -6,6 +6,12 @@ use App\Http\Controllers\JWTController;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\EDJWTController;
+
+Route::post('generate-jwt-token', [EDJWTController::class, 'generateJwtToken']);
+Route::post('verify-jwt-token', [EDJWTController::class, 'verifyJwtToken']);
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,15 +27,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/generate-token', [JWTController::class, 'generateToken']);
+Route::post('/generate-token', [JWTController::class, 'generateToken']); 
 
-Route::post('token', [AuthController::class, 'getToken']);
+
+
+//Route::post('token', [AuthController::class, 'getToken']);
 
 //auth kullanıldığı zaman login hatası route[login hatası veriyor middleware('auth:api') ] 
-Route::group([], function () {
+/* Route::middleware('auth:api')->group([], function () {
     Route::get('users', [UserController::class, 'index']);
     Route::post('users', [UserController::class, 'store']);
     Route::put('users/{id}', [UserController::class, 'update']);
 });
-
-
+ */
+/* Route::post('/login', [LoginController::class, 'login'])->name('login');
+ */

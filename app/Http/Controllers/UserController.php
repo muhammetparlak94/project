@@ -6,14 +6,16 @@ use Illuminate\Http\Request;
 use App\Models\User;
 
 class UserController extends Controller
-{
-    public function index()
+{public function index()
     {
-        $users = User::all();
-        
-
-        return response()->json($users);
+        if (auth('api')->check()) {
+            $users = User::all();
+            return response()->json($users);
+        }
+    
+        return response()->json(['error' => 'Unauthorized'], 401);
     }
+    
 
     public function store(Request $request)
     {
